@@ -24,8 +24,12 @@ Refilled 19 ore boulder(s).
 No damaged ore boulders loaded.
 ```
 
-Only the host (a dedicated server or a singleplayer world) can run it — a
-pure client has no server world to write to.
+Anyone connected can type it — a client's command travels to the server by
+RPC and runs there, regardless of who sent it. What actually has to be true
+is that **the server** (the dedicated server, or your own world if you're
+playing solo) has this mod installed; if it doesn't, CoreLib answers with
+its own `Command refillboulders does not exist!` instead of running
+anything.
 
 **The command repairs; it does not prevent consumption.** Boulders keep
 wearing down from mining and drills exactly as before — running the command

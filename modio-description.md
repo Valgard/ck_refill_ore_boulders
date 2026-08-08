@@ -25,8 +25,8 @@ you've been chipping away at keeps giving instead of running out.
 - It only reaches boulders that are actually loaded around you — roughly the
   same range the game keeps chunks loaded in. Boulders far outside that
   range simply aren't there to refill yet.
-- Only the host of the world (a dedicated server, or you in singleplayer)
-  can run the command.
+- Anyone connected can type the command — it always runs on the server, no
+  matter who sent it.
 - Amber Boulders and Crystal Meteor Boulders aren't ore boulders and are not
   affected.
 
@@ -34,6 +34,11 @@ you've been chipping away at keeps giving instead of running out.
 
 Requires **CoreLib** — mod.io will prompt you to install it when you
 subscribe.
+
+The command only runs where **the server** has this mod installed — the
+dedicated server, or your own world if you're playing solo. Installing it
+only on a client that then connects to a server without it does nothing;
+the game will simply reply that the command doesn't exist.
 
 ---
 

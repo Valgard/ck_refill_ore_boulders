@@ -138,10 +138,14 @@ Not yet published — the real mod ID in
 When publishing, `../utils/upload.sh` uses the shared
 `CoreKeeperModUtils.CLIPublishHelper.Publish` Editor class the same way as
 every sibling mod: the version comes from the topmost `## [x.y.z]` entry of
-`CHANGELOG.md`, and the profile logo is
-`unity/RefillOreBoulders/Editor/logo.png` (already in place). Set the mod.io
-profile type tag to **`Script`** (an `Asset` tag silently disables the mod's
-scripts).
+`CHANGELOG.md`. **The profile logo is still the scaffold placeholder** —
+`unity/RefillOreBoulders/Editor/logo.png` is the 64×64 flat-grey PNG
+`new_mod.py` generates to stand in until a real one is dropped in, and
+`CLIPublishHelper` only rejects a *missing* logo asset, not a placeholder
+one, so publishing today would silently ship the grey square as the mod.io
+profile image. Run the family logo pipeline (parent `../CLAUDE.md` § Logo /
+branding) before the first publish. Set the mod.io profile type tag to
+**`Script`** (an `Asset` tag silently disables the mod's scripts).
 
 ## Conventions
 

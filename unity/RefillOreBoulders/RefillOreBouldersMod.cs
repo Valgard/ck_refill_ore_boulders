@@ -15,7 +15,6 @@ namespace RefillOreBoulders
     public sealed class RefillOreBouldersMod : IMod
     {
         public const string Name = "Refill Ore Boulders";
-        public const string Version = "1.0.0";
 
         private LoadedMod _modInfo;
 
@@ -42,7 +41,7 @@ namespace RefillOreBoulders
 
         public void Init()
         {
-            Debug.Log($"[{Name}] {Version} loaded.");
+            Debug.Log($"[{Name}] loaded.");
         }
 
         public void ModObjectLoaded(Object obj) { }
