@@ -40,6 +40,10 @@ dedicated server, or your own world if you're playing solo. Installing it
 only on a client that then connects to a server without it does nothing;
 the game will simply reply that the command doesn't exist.
 
+In multiplayer, everyone joining a world that runs this mod needs it
+installed too. Joining a world **without** the mod is never restricted, so
+it will not get in the way of playing anywhere else.
+
 ---
 
 *Built with the official Pugstorm Core Keeper Mod SDK. Personal-use,

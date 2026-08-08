@@ -102,16 +102,40 @@ patch reached through unrelated code paths. Writing component data
 from there would not be, which is why the command tops up health instead of,
 say, spawning a fresh boulder entity.
 
-### Why `requiredOn: 0`
+### Why `requiredOn: 1`, even though `0` would fit the loader better
 
-This mod changes neither the item database nor the recipe database, so it
-creates no client/server divergence to protect against — a `Server` flag
-would make the *client* demand the mod on the server, and a `Client` flag
-would make the *server* demand it on the client (see the parent
-`../CLAUDE.md` § SDK quirks for the full crossed-flag explanation). Either
-would needlessly block joining a world that doesn't happen to run this mod.
-`None` is correct: everyone can play together regardless of who has it
-installed, and the command simply won't exist for those who don't.
+On loader semantics alone this mod wants `None` (`0`). It changes neither the
+item nor the recipe database, so there is no client/server divergence to
+protect against, and the flags are **crossed**: a `Server` flag makes the
+*client* demand the mod on the server, a `Client` flag makes the *server*
+demand it on the client (parent `../CLAUDE.md` § SDK quirks has the full
+explanation). Either one blocks joining a world that simply doesn't run this
+mod, which nothing here justifies.
+
+`0` is nevertheless not publishable. `requiredOn` carries **two unrelated
+meanings** in this toolchain: loader enforcement, and the mod.io "Application
+Type" catalogue tag that `CLIPublishHelper` derives from it
+(`utils/CLIPublishHelper.cs`, `EnsureTagThenUpload`). With `0` no
+Application-Type tag exists at all, the publish aborts with *"metadata.requiredOn
+is None … set it to 1 (Client), 2 (Server) or 3 (ClientAndServer)"*, and a mod
+without that tag would be invisible to mod.io's filters. Note CoreLib itself
+ships `requiredOn: 0` — it is a legitimate loader value; it is only the publish
+path that cannot express it.
+
+Of the three permitted values `1` (Client) does the least damage: it leaves
+*joining* other people's servers unrestricted, and confines the one enforcement
+it does create to players joining **your** world, which you control as host.
+`2` would block you from every server lacking the mod, and `3` does both. The
+cost is that the catalogue reads "Client" while the command actually executes
+server-side — `modio-description.md` states the real requirement in prose, so
+players are not misled.
+
+If this ever deserves a proper fix, it is decoupling the two meanings: give
+`CLIPublishHelper` its own environment variable for the Application-Type tag
+(as it already has `CK_MODIO_TYPE` for the Type group) so `requiredOn` can go
+back to expressing enforcement only. That touches shared `utils/` used by every
+sibling mod, which is why it was not done as a side effect of publishing this
+one.
 
 ### Scaffolding gotcha: CoreLib is not on the generated asmdef
 
