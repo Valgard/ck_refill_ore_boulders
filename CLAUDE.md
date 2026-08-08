@@ -52,7 +52,12 @@ Two runtime classes, plus the shared editor helpers symlinked in from
   `RefillBouldersCommand` by scanning the mod's assembly — no explicit
   handler registration call is needed beyond that. `IsHostOrSinglePlayer`
   (`Manager.ecs?.ServerWorld != null`) is the shared guard the command uses
-  to refuse running on a pure client.
+  to refuse running on a pure client. It is defence-in-depth, not a real
+  gate: `IServerCommandHandler.Execute` only ever runs from inside
+  `CommandModule.ServerHandleCommand`, which only ever runs on the process
+  that owns the `ServerWorld`, so the guard can never actually observe
+  `false` where it is reached — do not read it as evidence that only the
+  host can invoke the command.
 - **`RefillBouldersCommand` (`IServerCommandHandler`, in `Commands/`)** — the
   whole feature. Builds an `EntityQuery` for
   `ComponentType.ReadOnly<RequiresDrillCD>()` +
