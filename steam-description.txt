@@ -1,0 +1,29 @@
+[h1]Refill Ore Boulders[/h1]
+
+Never abandon a half-mined ore vein again. Ore boulders — the big Copper, Tin, Iron, Gold, Scarlet, Octarine, Galaxite, Solarite, Pandorium and Relucite chunks you drill or pickaxe for ore — are destroyed for good once their health hits zero. This mod adds one chat command that tops every ore boulder around you back up to full.
+
+[b]/refillboulders[/b] restores every currently loaded ore boulder to full health in one go, and reports how many it refilled (or tells you there was nothing to do). It leaves already-full boulders untouched and never revives one that is already being destroyed.
+
+[b]Repairs, doesn't prevent wear.[/b] The command tops boulders back up — it does not make them indestructible. Mining and drills keep wearing them down exactly as in vanilla; run the command again whenever you want to top them off.
+
+[b]Multiplayer — the server needs this mod, not just the client.[/b] The command only runs where the server has it installed — the dedicated server, or your own world if you're playing solo. A client that connects to a server without the mod is simply told the command doesn't exist. Everyone joining a world that runs this mod needs it installed too; joining a world that doesn't run it is never restricted.
+
+[h2]Good to know[/h2]
+
+[list]
+[*] Anyone connected can type the command — it always runs on the server, no matter who sent it.
+[*] It only reaches boulders that are actually loaded around you, roughly the same range the game keeps chunks loaded in.
+[*] Amber Boulders and Crystal Meteor Boulders aren't ore boulders and are not affected.
+[/list]
+
+[h2]Requirements[/h2]
+
+[list]
+[*] CoreLib (required)
+[/list]
+
+This mod has no settings screen, so it does not require Mod Settings Menu. Steam does not prompt for required items the way mod.io does — subscribe to CoreLib as well, or the mod will not load.
+
+[hr][/hr]
+
+Built with the official Pugstorm Core Keeper Mod SDK. Personal-use, non-commercial (Core Keeper EULA). Not affiliated with or endorsed by Pugstorm.
