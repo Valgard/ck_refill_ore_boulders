@@ -44,3 +44,12 @@ export CK_MODIO_TYPE="Quality of Life|World"
 # #available-mods channel — PIPE-separated, because "Misc / Other" contains
 # spaces. Read by utils/discord_post.py; Discord allows at most five.
 export CK_DISCORD_TAGS="Mining|Utilities|Cheats"
+
+# Images and clips for the post, beyond the logo — PIPE-separated, in the order
+# they should appear. A relative path becomes an attachment, an http(s) URL
+# becomes its own follow-up message (the only route for a clip past Discord's
+# upload ceiling). Empty is legitimate here, unlike CK_DISCORD_TAGS: it means
+# the mod has nothing to show beyond its logo.
+# Deliberately empty: the mod is a chat command that tops up loaded ore
+# boulders, and a restored health bar is not something a screenshot shows.
+export CK_DISCORD_MEDIA=""
