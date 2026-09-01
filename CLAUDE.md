@@ -83,13 +83,13 @@ silently miss any future ore tier that follows the same authoring pattern.
 
 ### Why `IncludeDisabledEntities` is mandatory, not defensive
 
-Core Keeper disables entities beyond `DISTANCE_FROM_PLAYER_TO_UPDATE_ENTITY`
-(40 tiles) while keeping them *loaded* out to the player's
-`KeepAreaLoadedCD` radius (`KeepLoadedRadius` 300 tiles). Without
-`EntityQueryOptions.IncludeDisabledEntities` the query would only ever see
-the small fraction of boulders inside that 40-tile update radius, not the
-full load bubble — a single real run against a 19-boulder result confirmed
-the command reaches far beyond 40 tiles.
+Core Keeper disables entities beyond `DISTANCE_FROM_PLAYER_TO_UPDATE_ENTITY` (40
+tiles) while keeping them *loaded* out to the player's `KeepAreaLoadedCD` radius
+(`KeepLoadedRadius` 300 tiles). Without
+`EntityQueryOptions.IncludeDisabledEntities` the query would only ever see the
+small fraction of boulders inside that 40-tile update radius, not the full load
+bubble — a single real run against a 19-boulder result confirmed the command
+reaches far beyond 40 tiles.
 
 ### Why direct `EntityManager` writes are safe here
 
@@ -165,18 +165,17 @@ if the cache is wiped.
 Not yet published — the real mod ID in
 `unity/RefillOreBoulders/Editor/RefillOreBoulders_modio.asset` is still `0`.
 When publishing, `../utils/upload.sh` uses the shared
-`CoreKeeperModUtils.CLIPublishHelper.Publish` Editor class the same way as
-every sibling mod: the version comes from the topmost `## [x.y.z]` entry of
-`CHANGELOG.md`. The profile logo is
-`unity/RefillOreBoulders/Editor/logo.png` — a 1024×1024 transparent PNG made
-with the family logo pipeline (parent `../CLAUDE.md` § Logo / branding). Its
-per-mod gesture is a golden cornucopia pouring ore down into a teal boulder;
-the chosen white/black source pair and the rejected candidates are kept in
-`sources/` under the family naming convention. Note for any future logo work
-here: `CLIPublishHelper` only rejects a *missing* logo asset, never a
-placeholder one, so the scaffold's 64×64 grey square would have published
-silently had it not been replaced. Set the mod.io profile type tag to
-**`Script`** (an `Asset` tag silently disables the mod's scripts).
+`CoreKeeperModUtils.CLIPublishHelper.Publish` Editor class the same way as every
+sibling mod: the version comes from the topmost `## [x.y.z]` entry of
+`CHANGELOG.md`. The profile logo is `unity/RefillOreBoulders/Editor/logo.png` —
+a 1024×1024 transparent PNG made with the family logo pipeline (parent
+`../CLAUDE.md` § Logo / branding). Its per-mod gesture is a golden cornucopia
+pouring ore down into a teal boulder; the chosen white/black source pair and the
+rejected candidates are kept in `sources/` under the family naming convention.
+Note for any future logo work here: `CLIPublishHelper` only rejects a *missing*
+logo asset, never a placeholder one, so the scaffold's 64×64 grey square would
+have published silently had it not been replaced. Set the mod.io profile type
+tag to **`Script`** (an `Asset` tag silently disables the mod's scripts).
 
 ## Conventions
 
