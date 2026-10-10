@@ -39,3 +39,7 @@ unity/RefillOreBoulders/Editor/CLIPublishHelper.cs.meta
 unity/RefillOreBoulders/Editor/LocalizationGenerator.cs
 unity/RefillOreBoulders/Editor/LocalizationGenerator.cs.meta
 .worktrees/
+
+# Superpowers process artifacts: plans, scratch and the subagent workspace
+docs/superpowers/
+/.superpowers/
