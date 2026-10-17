@@ -49,7 +49,8 @@ Two runtime classes, plus the shared editor helpers symlinked in from
 - **`RefillOreBouldersMod` (`IMod`)** — bootstrap. `EarlyInit()` loads
   CoreLib's `CommandModule` and registers this mod with it
   (`CommandModule.AddCommands`); CoreLib then discovers
-  `RefillBouldersCommand` by scanning the mod's assembly — no explicit
+  `RefillBouldersCommand` by scanning the loaded mods' assemblies — the
+  game's `API.Reflection.GetTypes` ignores the mod id it is given — no explicit
   handler registration call is needed beyond that. `IsHostOrSinglePlayer`
   (`Manager.ecs?.ServerWorld != null`) is the shared guard the command uses
   to refuse running on a pure client. It is defence-in-depth, not a real
@@ -98,9 +99,10 @@ CoreLib's `CommandCommSystem` (which dispatches to registered
 handlers run from inside its `OnUpdate` — i.e. on the `ServerWorld` main
 thread, inside the ECS frame, not from some background thread or a Harmony
 patch reached through unrelated code paths. Writing component data
-(`SetComponentData`) from there is sound; creating or destroying entities
-from there would not be, which is why the command tops up health instead of,
-say, spawning a fresh boulder entity.
+(`SetComponentData`) from there is sound. Creating or destroying entities
+through `EntityManager` would be possible too — the handler runs outside any
+iteration, and CoreLib creates its own reply entities from that very call — but
+the command tops up health rather than spawning a fresh boulder entity.
 
 ### Why `requiredOn: 1`, even though `0` would fit the loader better
 
